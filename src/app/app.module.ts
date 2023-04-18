@@ -1,8 +1,13 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TasksModule } from './tasks/tasks.module';
+import { CalendarModule } from './calendar/calendar.module';
+import { TaskService } from './tasks/task.service';
+import { GlobalErrorHandler } from './GlobalErrorHandler';
+
 
 @NgModule({
   declarations: [
@@ -10,9 +15,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TasksModule,
+    CalendarModule
   ],
-  providers: [],
+  providers: [{provide: ErrorHandler, useClass: GlobalErrorHandler}, TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
